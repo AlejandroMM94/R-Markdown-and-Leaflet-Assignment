@@ -1,0 +1,47 @@
+---
+title: "R Markdown and Leaflet Assignment"
+author: "Alejandro"
+date: "17/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Parque de Las Leyendas, Lima, Peru 
+
+```{r, fig.align='center', fig.cap= "*Main attractions of the Parque de Las Leyendas*"}
+library(leaflet)
+hopkinsSites <- c(
+  "Jardín Botánico",
+  "Laguna Recreativa",
+  "Zona internacional",
+  "Mariposario",
+  "Felinario",
+  "Zona Selva",
+  "Zona Sierra",
+  "Zona Costa"
+)
+hopkinsIcon <- icons(
+  iconUrl = c("ginkgo.png", "bote.png", "http://www.pngall.com/wp-content/uploads/2017/11/Giraffe-Free-PNG-Image.png", "mariposa.png", "http://pngimg.com/uploads/lion/lion_PNG23258.png",
+"guacamayo.png",
+"alpaca.png",
+"https://www.zoo-rostock.de/files/bilder/Tierseiten/Pinguin/Humboldtpinguin_a.png"
+  ),
+  iconWidth = 40*215/230, iconHeight = 40,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+hopkinsLatLong <- data.frame(
+  lat = c(-12.067185, -12.067154, -12.068661, -12.068535, -12.067398, -12.071016, -12.072673, -12.069604),
+  lng = c(-77.087342, -77.088662, -77.085438, -77.089783, -77.083606, -77.085026, -77.08581, -77.087973))
+
+hopkinsLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = hopkinsIcon, popup = hopkinsSites)
+```
+
+
+
+
